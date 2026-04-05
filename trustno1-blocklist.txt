@@ -1,0 +1,1104 @@
+! Title: Trustno1 uBlock filter
+! Expires: 24 days
+! Description: For personal use only, most sources are cited. If you wish to use them, please copy what you know (It may work for me, but not for you).
+
+
+
+
+! Chặn all service worker ngoại lệ example1.com|... | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-33069815
+!*$csp=worker-src 'none',domain=~vtvgo.vn|~mega.nz|~truthsocial.com|~youtube.com|~telegram.org|~animevsub.eu.org|~spotidownloader.com|~gimytv.io|~iyf.tv|~xiaoyakankan.com|~imaple8.co|~549.tv|~agedm.vip|~hhpanda.ee|~phimhhtq.com|~kick.com|~challenges.cloudflare.com|~spencerdevs.xyz|~lumo.proton.me
+
+! Chặn CSS nặng | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-33455089
+!*##*:style(border-radius:unset!important;box-shadow:unset!important;text-shadow:unset!important;text-transform:unset!important;animation-iteration-count:1!important;scroll-behavior:unset!important;moz-animation-iteration-count:1!important;webkit-animation-iteration-count:1!important;backdrop-filter:unset!important;filter:unset!important;animation-timing-function:step-start!important;transition-timing-function:step-start!important;filter:none!important;text-rendering:none!important;clip-path:unset!important)
+
+*##*:style(box-shadow:unset!important;text-shadow:unset!important;text-transform:unset!important;animation-iteration-count:1!important;scroll-behavior:unset!important;moz-animation-iteration-count:1!important;webkit-animation-iteration-count:1!important;backdrop-filter:unset!important;filter:unset!important;animation-timing-function:step-start!important;transition-timing-function:step-start!important;filter:none!important;text-rendering:none!important;clip-path:unset!important)
+
+facebook.com#@#*:style(box-shadow:unset!important;text-shadow:unset!important;text-transform:unset!important;animation-iteration-count:1!important;scroll-behavior:unset!important;moz-animation-iteration-count:1!important;webkit-animation-iteration-count:1!important;backdrop-filter:unset!important;filter:unset!important;animation-timing-function:step-start!important;transition-timing-function:step-start!important;filter:none!important;text-rendering:none!important;clip-path:unset!important)
+
+! Buộc bộ đếm giờ tiếp tục chạy kể cả khi chuyển tab | *Notice: 2 cái cuối không nên bật, dễ lỗi | https://voz.vn/p/32763142/
+!example.com##+js(set, blurred, false)
+!example.com##+js(set, document.hasFocus, trueFunc)
+!example.com##+js(aeld, visibilitychange)
+!example.com##+js(aeld, blur)
+
+!Ngăn web phát hiện đổi tab
+!trangweb.com##+js(aeld, /blur|visibilitychange/)
+!trangweb.com##+js(set, document.hasFocus, trueFunc)
+!trangweb.com##+js(set, document.hidden, false)
+
+!Chặn service worker cho các trang được chỉ định
+||www.douyin.com^$csp=worker-src 'none'
+||wetv.vip^$csp=worker-src 'none'
+||www.cuonchill.com^$csp=worker-src 'none'
+||onflix.me^$csp=worker-src 'none'
+||novaphim.pro^$csp=worker-src 'none'
+||vn-z.vn^$csp=worker-src 'none'
+||cuutruyen.net^$csp=worker-src 'none'
+!||vnexpress.net^$csp=worker-src 'none'
+!@@||vnexpress.net/sw.js
+
+||dantri.com.vn^$csp=worker-src 'none'
+||vietnamnet.vn^$csp=worker-src 'none'
+||thanhnien.vn^$csp=worker-src 'none'
+||apkpure.com^$csp=worker-src 'none'
+||apkpure.net^$csp=worker-src 'none'
+
+!🌐International Sites
+! Facebook
+! >> uBlock filters - Annoyances should remove Suggested posts without a need for additional filters <<
+! Suggested for you
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) div:not(:only-child)>div:only-child>div:only-child>div:first-child[class=""]>div:not([data-0]):has-text(/^Suggested/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
+! Unlabelled Suggested posts (with a Follow/Join buttons)
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) :is(h3,h4) [role=button]:has-text(/Follow|Join/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
+! Use only if you actually have these: Suggested posts with the label next to the post date
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has-text(Suggested for you):style(height: 0 !important; overflow: hidden !important;)
+
+! People You May Know | Những người bạn có thể biết
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([href="/friends/"]):style(height: 0 !important; overflow: hidden !important;)
+! Suggested groups
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([href="/groups/discover/"]):style(height: 0 !important; overflow: hidden !important;)
+! Reels and short videos (English UI)
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([aria-label="Reels"]):style(height: 0 !important; overflow: hidden !important;)
+! Suggested pages
+!www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([aria-label="Suggested pages"]):style(height: 0 !important; overflow: hidden !important;)
+
+! Removes FB's "Related discussions" panel: | ! Xóa bảng "Thảo luận liên quan" của FB: | ! FB - tin tức và nguồn cấp dữ liệu nhóm - thảo luận liên quan - ẩn liên kết/nút "# liên quan"
+!facebook.com##div[role=article] span:not(>*):has-text(/^Related discussions$/):upward(span)
+! FB - news and group feeds - related discussions - hide the "# related" link/button
+!facebook.com##div[role=button] > span:not(>*):has-text(/related/i):upward(4
+
+! Suggested for you (mobile)
+!m.facebook.com##[data-mcomponent="MScreen"]>div[class="m"]>div:has-text(Suggested for you)
+
+! Block video ads (begin-roll, mid-roll, end-roll) | chặn quảng cáo video (đầu video, giữa video, cuối video) | https://github.com/zbluebugz/facebook-clean-my-feeds?tab=readme-ov-file#tip
+facebook.com##+js(set, Object.prototype.scrubber, undefined)
+
+! Facebook Anti-Refresh | Chống làm mới Facebook | https://greasyfork.org/vi/scripts/535870-facebook-anti-refresh/discussions/302019#comment-599160
+facebook.com##+js(aeld, /blur|focus|afterblur|mousemove|visibilitychange/)
+
+!!Ẩn popup login
+facebook.com##+js(trusted-click-element, body > div[id^="mount"] #scrollview ~ div div[role="button"]:has(> div[data-visualcompletion="ignore"]) )
+facebook.com##div[id^="mount"] div:not([id]):not([class]):not([style]) > div[data-nosnippet]
+facebook.com##+js(aeld, scroll)
+facebook.com##body > div[class*="__fb-light-mode"]
+facebook.com##+js(trusted-click-element, [role="dialog"]:has([href="https://www.facebook.com/policies/cookies/"]) [aria-hidden="true"] + [aria-label][tabindex="0"], , 1000)
+!!Chặn dừng video khi đổi tab
+facebook.com##+js(aeld, visibilitychange, applyWithGuard)
+
+! Instagram
+!https://dabric.xyz/script/less-distracting-instagram/ | https://dabric.xyz/script-downloads/less-distracting-instagram-filter.txt
+! hide for you page
+!www.instagram.com##body:has(h1:has-text("For you")) main
+! hide explore
+!www.instagram.com##body:has(input[type="search"]):not(:has(div > div[role="button"]:has-text("Cancel"))) main
+
+!YouTube/YT Mobile
+!!Chặn service worker
+||www.youtube.com^$csp=worker-src 'none'
+||www.youtube.com/sw.js$script
+
+!!Consent dialog/Hộp thoại đồng ý
+!!YT consent
+!youtube.com##+js(set, ytInitialData.topbar.desktopTopbarRenderer.interstitial.consentBumpRenderer.forceConsent, false)
+!youtube.com##+js(json-prune, [].response.topbar.desktopTopbarRenderer.interstitial.consentBumpRenderer)
+!youtube.com##+js(json-prune, topbar.desktopTopbarRenderer.interstitial.consentBumpRenderer)
+
+! 2021-12-01: When specific videos redirect persistently to consent page try this filter (discussion: https://redd.it/r3ec5x ):
+!youtube.com##+js(set, ytInitialData.onResponseReceivedEndpoints, undefined)
+
+! 2021-12-14 YT consent v2 https://github.com/uBlockOrigin/uAssets/issues/7636#issuecomment-992858673
+!youtube.com##+js(set, ytInitialData.topbar.desktopTopbarRenderer.interstitial.consentBumpV2Renderer, undefined)
+!youtube.com##+js(json-prune, [].response.overlay.consentBumpV2Renderer topbar.desktopTopbarRenderer.interstitial.consentBumpV2Renderer overlay.consentBumpV2Renderer response.overlay.consentBumpV2Renderer)
+
+! 2022-10-16 when navigating directly to #shorts
+!youtube.com##+js(set, ytInitialData.desktopTopbar.desktopTopbarRenderer.interstitial.consentBumpV2Renderer, undefined)
+
+!!Login dialog/Hộp thoại đăng nhập
+! YT login
+!youtube.com##+js(set, ytInitialPlayerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer.isVisible, false)
+!youtube.com##+js(set, ytInitialData.overlay.upsellDialogRenderer.isVisible, false)
+!youtube.com##+js(json-prune, [].playerResponse.auxiliaryUi.messageRenderers.upsellDialogRenderer)
+! probably this one is also neded, but I cannot reproduce anymore
+! youtube.com##+js(json-prune, auxiliaryUi.messageRenderers.upsellDialogRenderer)
+
+!!YT Shorts
+! YT Homepage and Subscriptions (Grid View) - Hide the Shorts section/Trang chủ và Đăng ký YT (Chế độ xem lưới) - Ẩn phần Video ngắn
+!youtube.com##[is-shorts]
+! YT Menu - Hide the Shorts button/Menu YT - Ẩn nút Shorts
+!www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+! YT Search - Hide Shorts/Tìm kiếm YT - Ẩn video ngắn
+!www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"])
+! YT Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections | Tìm kiếm YT, Kênh, Đăng ký (Chế độ xem danh sách) và Thanh bên/Đề xuất người chơi bên dưới - Ẩn các phần Video ngắn
+!www.youtube.com##ytd-reel-shelf-renderer
+! YT Channels - Hide the Shorts tab/Kênh YT - Ẩn tab Video ngắn
+!www.youtube.com##[tab-title="Shorts"]
+! YT Subscriptions - Hide Shorts - Grid View/Đăng ký YT - Ẩn video ngắn - Chế độ xem lưới
+!www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"])
+! YT Subscriptions - Hide Shorts - List View/Đăng ký YT - Ẩn video ngắn - Chế độ xem danh sách
+!www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"])
+! YT Subscriptions - New Layout - Hide Shorts/Đăng ký YT - Giao diện mới - Ẩn video ngắn
+!www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"])
+! YT Sidebar - Hide Shorts/Thanh bên YT - Ẩn video ngắn
+!www.youtube.com###related ytd-compact-video-renderer:has([overlay-style="SHORTS"])
+
+! YT Mobile - Hide the Shorts Menu button/YT Mobile - Ẩn nút Menu Shorts
+!m.youtube.com##ytm-pivot-bar-item-renderer:has(>.pivot-shorts)
+! YT Mobile - Hide the Shorts sections/YT Mobile - Ẩn phần Video ngắn
+!m.youtube.com##ytm-reel-shelf-renderer
+!m.youtube.com##ytm-rich-section-renderer:has([d^="M17.77,10.32l-1.2"])
+! YT Mobile - Hide Shorts in search results/YT Mobile - Ẩn video ngắn trong kết quả tìm kiếm
+!m.youtube.com##ytm-search ytm-video-with-context-renderer:has([data-style="SHORTS"])
+! YT Mobile - Hide the Shorts button on Channels/YT Mobile - Ẩn nút Shorts trên Kênh
+!m.youtube.com##[tab-title="Shorts"]
+
+!!Mixes and YT Playlists/Bản phối và danh sách phát YT
+! YT Home - Hide Mixes/Trang chủ YT - Ẩn danh sách phối nhạc
+!youtube.com##ytd-rich-item-renderer:has([href*="start_radio=1"])
+! YT Sidebar - Hide Mixes/Thanh bên YT - Ẩn danh sách phối nhạc
+!youtube.com##ytd-compact-radio-renderer, :is(#related yt-lockup-view-model,ytd-compact-video-renderer):has([href*="&start_radio=1"])
+! YT Search- Hide Mixes/Tìm kiếm YT - Ẩn danh sách kết hợp
+!youtube.com##ytd-radio-renderer, :is(ytd-search yt-lockup-view-model,ytd-video-renderer[is-search]):has([href*="&start_radio=1"][aria-label])
+! YT Player - Hide Mixes in Video End Cards/Trình phát YT - Ẩn danh sách phát trong thẻ kết thúc video
+!youtube.com##.ytp-videowall-still[data-is-mix="true"]
+
+! YT Sidebar - Hide "YouTube" (Music) playlists/Thanh bên YT - Ẩn danh sách phát "YouTube" (Âm nhạc)
+!youtube.com##ytd-compact-playlist-renderer:has([title^="YouTube"])
+
+!!Livestreams
+! YT - Hide Live Videos
+!www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer):has(.badge-style-type-live-now-alternate)
+! YT - Hide VODs/Streamed Videos
+!www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):has([aria-label~="Streamed"])
+! YT  - Hide VODs/Streamed Videos (backup version - less efficient)
+!www.youtube.com##:is(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer):not(:has([aria-label~="Streamed"])) #metadata-line>span:last-of-type:has-text(Streamed):upward(ytd-rich-item-renderer,ytd-grid-video-renderer,ytd-compact-video-renderer,ytd-item-section-renderer,ytd-video-renderer)
+
+!!Low view videos
+! YT Home - Hide Videos Below 1K Views/Trang chủ YT - Ẩn video dưới 1 nghìn lượt xem
+!www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(#video-title-link[aria-label~="views"]:not(:is([aria-label*=",0"],[aria-label*=",1"],[aria-label*=",2"],[aria-label*=",3"],[aria-label*=",4"],[aria-label*=",5"],[aria-label*=",6"],[aria-label*=",7"],[aria-label*=",8"],[aria-label*=",9"])))
+! YT Home - Hide Videos Below 1K Views (backup version - less efficient)
+!www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:not(:has(#video-title[aria-label~="views"], .yt-lockup-view-model-wiz--collection-stack-2)) :is(#metadata-line>span:first-of-type, .yt-content-metadata-view-model-wiz__metadata-row):last-of-type:not(:has-text(/[KMB]\b/)):upward(ytd-rich-item-renderer)
+! YT Sidebar - Hide Videos Below 1K Views/Thanh bên YT - Ẩn video dưới 1 nghìn lượt xem
+!www.youtube.com##ytd-compact-video-renderer:has(#video-title[aria-label~="views"]:not(:is([aria-label*=",0"],[aria-label*=",1"],[aria-label*=",2"],[aria-label*=",3"],[aria-label*=",4"],[aria-label*=",5"],[aria-label*=",6"],[aria-label*=",7"],[aria-label*=",8"],[aria-label*=",9"])))
+! YT Sidebar - Hide Videos Below 1K Views (backup version - less efficient)
+!www.youtube.com###related :is(yt-lockup-view-model,ytd-compact-video-renderer):not(:has(#video-title[aria-label~="views"], .yt-lockup-view-model-wiz--collection-stack-2)) :is(#metadata-line>span:first-of-type, .yt-content-metadata-view-model-wiz__metadata-row):last-of-type:not(:has-text(/[KMB]\b/)):upward(yt-lockup-view-model,ytd-compact-video-renderer)
+! YT Player End Cards - Hide Videos Below 1K Views/Thẻ kết thúc của YT Player - Ẩn video dưới 1.000 lượt xem
+!www.youtube.com##.ytp-videowall-still[aria-label~="views"]:not(:is([aria-label*=",0"],[aria-label*=",1"],[aria-label*=",2"],[aria-label*=",3"],[aria-label*=",4"],[aria-label*=",5"],[aria-label*=",6"],[aria-label*=",7"],[aria-label*=",8"],[aria-label*=",9"]))
+
+!!Suggested videos
+! YT Home - Hide videos based on channel names/Trang chủ YT - Ẩn video dựa trên tên kênh
+!youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(#avatar-link:is([title="Full Channel Name"], [title*="Partial Channel Name"], [title="Case Insensitive Channel Name"i]))
+! YT Home - Hide videos based on their titles/Trang chủ YT - Ẩn video dựa trên tiêu đề
+!youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(#video-title-link:is([title*="Partial Match"], [title*="Case-Insensitive Partial Match"i], [title~="Space-separated-aka-Whole-word-match"]))
+! YT Sidebar - Hide videos based on channel names/Thanh bên YT - Ẩn video dựa trên tên kênh
+!youtube.com###related ytd-compact-video-renderer:has(#text.ytd-channel-name[title]:is([title="Full Channel name"], [title="Case-insensitive Full Channel name"i]))
+! YT Sidebar - Hide videos based on their titles/Thanh bên YT - Ẩn video dựa trên tiêu đề của chúng
+!youtube.com###related ytd-compact-video-renderer:has(#video-title:is([title*="Partial Match"], [title*="Case-Insensitive Partial Match"i], [title~="Space-separated-aka-Whole-word-match"]))
+! Mobile YT - Hide videos based on channel URLs/YT di động - Ẩn video dựa trên URL kênh
+!m.youtube.com##ytm-media-item .media-channel a:not([class]):is([href="/@ChannelURL"], [href="/@AnotherChannelURL"]):upward(ytm-media-item)
+! YT Home - No Videos/Trang chủ YT - Không có video
+!www.youtube.com##ytd-browse[page-subtype="home"]
+! YT Videos - No Sidebar/Video YT - Không có thanh bên
+!www.youtube.com##ytd-watch-flexy #secondary
+! YT Videos - Sidebar Without Recommendations/Video YT - Thanh bên không có đề xuất
+!www.youtube.com##ytd-watch-flexy #secondary
+
+!!Homepage posts/Bài viết trang chủ
+! YT Homepage - Hide the Posts Section/Trang chủ YT - Ẩn phần bài viết
+!www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(ytd-rich-item-renderer[is-post])
+! YT Homepage - Hide Posts/Trang chủ YT - Ẩn bài viết
+!www.youtube.com##ytd-browse[page-subtype="home"] ytd-rich-item-renderer[is-post]
+
+!!Recommend after pause/Đề xuất sau khi tạm dừng
+youtube-nocookie.com,youtube.com##.ytp-pause-overlay, .show-video-thumbnail-button
+~youtube-nocookie.com,~youtube.com##iframe ~ #topvbar > #rvid
+
+!!Search page without bloat/Tìm kiếm trang không bị phình to
+! YT Search - keep only videos (no shorts)/Tìm kiếm YT - chỉ giữ lại video (không có video ngắn)
+!youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+! YT Search - keep only videos (no shorts) and channels/Tìm kiếm YT - chỉ giữ lại video (không có video ngắn) và kênh
+!youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+! YT Search - keep only videos (no shorts), channels and playlists/Tìm kiếm YT - chỉ giữ lại video (không có video ngắn), kênh và danh sách phát
+!youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,ytd-playlist-renderer,yt-lockup-view-model,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+!!Search results
+! YT Search - hide results based on channel names/Tìm kiếm YT - ẩn kết quả dựa trên tên kênh
+!www.youtube.com##ytd-search ytd-video-renderer:has(#text.ytd-channel-name:is([title="Exact channel name 1"], [title="Exact channel name 2"]))
+
+!!Placeholders in the Home page recommendations/Trình giữ chỗ trong các đề xuất Trang chủ
+! Move homepage placeholders to the end/Di chuyển chỗ giữ chỗ trang chủ đến cuối
+!www.youtube.com##ytd-browse[page-subtype="home"] :is(ytd-rich-grid-row, #contents.ytd-rich-grid-row):style(display: contents !important)
+! Fixes grid alignment/Sửa lỗi căn chỉnh lưới
+!www.youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important)
+!www.youtube.com##ytd-rich-grid-renderer>#contents:style(margin-left: calc(var(--ytd-rich-grid-gutter-margin)) !important)
+!www.youtube.com###content.ytd-rich-section-renderer:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important; margin-right: calc(var(--ytd-rich-grid-item-margin)*2.5) !important;)
+
+!!Video annotations/Chú thích video
+!Block once for all the scripts responsible for annotations/Chặn một lần cho tất cả các tập lệnh chịu trách nhiệm chú thích
+!/annotations_module.js$script,xhr,important,domain=youtube.com
+!and/or the end screen / auto play next: | và/hoặc màn hình kết thúc / tự động phát tiếp theo:
+!/endscreen.js$script,xhr,important,domain=youtube.com
+!Or you can separately hide annotations with only specific content - videos: | Hoặc bạn có thể ẩn riêng các chú thích chỉ có nội dung cụ thể - video:
+!youtube.com##.ytp-ce-element.ytp-ce-video
+!channels:
+!youtube.com##.ytp-ce-element.ytp-ce-channel
+!websites:
+!youtube.com##.ytp-ce-element.ytp-ce-website
+!playlists:
+!youtube.com##.ytp-ce-element.ytp-ce-playlist
+!"teaser" from the creator:/"trêu ghẹo" từ người sáng tạo:
+!youtube.com##.ytp-cards-teaser
+!"i" button in the corner:/Nút "i" ở góc:
+youtube.com##.ytp-button.ytp-cards-button
+!Brand image in the corner/Hình ảnh thương hiệu ở góc
+youtube.com##.ytp-button.branding-img-container
+!"Product" in bottom left corner/"Sản phẩm" ở góc dưới bên trái
+youtube.com##.ytp-suggested-action
+
+!!Hide "1080p Premium" in the video quality menu/Ẩn "1080p Premium" trong menu chất lượng video
+youtube.com##.ytp-quality-menu .ytp-menuitem:has(.ytp-premium-label)
+!!Self promotion dialogs in bottom left corner ("Join Now")/Hộp thoại tự quảng cáo ở góc dưới bên trái ("Tham gia ngay")
+!youtube.com##ytd-popup-container > tp-yt-paper-dialog > ytd-mealbar-promo-renderer, ytd-popup-container > tp-yt-paper-dialog > yt-mealbar-promo-renderer:has-text(/Claim Offer|Join now|Not Now|No thanks|YouTube TV|live TV|Live TV|movies|sports|Try it free|unlimited DVR|watch NFL/)
+
+!!Ép YT dùng avc01 thay vì av1 | https://voz.vn/t/tong-hop-cac-userscripts.914560/post-37964979
+www.youtube.com##+js(trusted-replace-argument, MediaSource.isTypeSupported, 0, 0, condition, /vp0?9|av0?1/)
+m.youtube.com##+js(trusted-replace-argument, MediaSource.isTypeSupported, 0, 0, condition, /vp0?9|av0?1/)
+!!YT Mobile tiếp tục phát khi đổi tab
+m.youtube.com##+js(aeld, visibilitychange, /bgmobile|\{\w\.\w+\(\)\}/)
+
+!Chặn tự động dịch tiêu đề video
+@@||youtube.com/api/timedtext^$xhr,domain=youtube.com
+@@||youtube.com/api/jnn/v1/GenerateIT^$xhr,domain=youtube.com
+
+! uBO filter lists to modify tweaks and experimental flags for the YouTube NRD script | https://pastebin.com/raw/fL0KD0Av | https://greasyfork.org/vi/scripts/453802-youtube-non-rounded-design
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.enable_channel_page_header_profile_section, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.enable_header_channel_handler_ui, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_unavailable_video_error_ui_client, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_refresh_on_theme_change, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_cinematics, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_comments_panel_button, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_grid, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_grid_hide_chips, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_metadata_refresh_no_old_secondary_data, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_modern_panels, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_panel_height_matches_player, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.enable_channel_page_header_profile_section, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_modern_sd_v2, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.smartimation_background, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_amsterdam_playlists, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_actions, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_like, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_animated_like_lazy_load, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_guide_ui_refresh, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_ads, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_chips, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_collections_v2, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_dialogs, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_playlists, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_tabs, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_modern_typography, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_enable_youtab, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_rounded_containers, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_rounded_thumbnails, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_sheets_ui_refresh, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_snackbar_ui_refresh, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_rounded_player_large, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_player_enable_featured_product_banner_exclusives_on_desktop, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_comments_panel_button, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.fill_view_models_on_web_vod, true)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_flexy_metadata_height, 136)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.kevlar_watch_max_player_width, 1280)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.live_chat_over_engagement_panels, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.live_chat_scaled_height, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.live_chat_smaller_min_height, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.main_app_controller_extraction_batch_18, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.main_app_controller_extraction_batch_19, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.no_iframe_for_web_stickiness, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.optimal_reading_width_comments_ep, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.remove_masthead_channel_banner_on_refresh, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.small_avatars_for_comments, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.small_avatars_for_comments_ep, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_compact_comments, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_compact_comments_ep, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_compact_comments_header, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_log_theater_mode, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_theater_chat, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.web_watch_theater_fixed_chat, false)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.wn_grid_max_item_width, 0)
+!youtube.com##+js(set, yt.config_.EXPERIMENT_FLAGS.wn_grid_min_item_width, 0)
+
+!YTMusic
+!!Chặn serviceworker
+||music.youtube.com^$csp=worker-src 'none'
+
+!Google
+!!Google consent, "before you continue"
+www.google.*##^script:has-text(consentCookiePayload)
+www.google.*##+js(acis, document.cookie, YES+)
+google.*##+js(aeld, DOMContentLoaded, CONSENT)
+!||consent.google.com^
+
+!!People also search for/Mọi người cũng tìm kiếm
+google.*##[id^="eob_"]
+
+!!Google login dialogs on various pages/Hộp thoại đăng nhập Google trên nhiều trang khác nhau
+||accounts.google.com/gsi/*$xhr,script,3p
+
+!Tắt Google tự động dịch | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-36965045
+www.google.com##.Pa9Ggf:not([style="display:none"])
+www.google.com##.Pa9Ggf[style="display:none"]:style(display: block !important;)
+www.google.com##a[jsname="UWckNb"][data-tli][href^="https://translate.google.com/translate?"]
+www.google.com##a[jsname="UWckNb"][data-tli][style="display:none"]:style(display: block !important;)
+www.google.com##div[jscontroller="Vxh2ib"]
+
+!X,Twitter
+!!Timelines / Profiles
+!!Timeline sections
+! Twitter/X - Clean Timelines - See Only Tweets/Posts, No Inserts | Twitter/X - Dòng thời gian sạch - Chỉ xem Tweet/Bài đăng, Không chèn
+!twitter.com,x.com##:is([aria-label="Timeline: Your Home Timeline"],[aria-label^="Timeline:"][aria-label$="posts"]) div[style^="transform: translateY"][style*="position: absolute;"]:not(:has(article, [href^="/i/status/"], [role="progressbar"],>div>button))
+
+!!Analytics
+! Analytics/Views button on tweets | Nút Phân tích/Lượt xem trên tweet
+!twitter.com,x.com##article [role=group] [href$="/analytics"]:upward(div:not(:only-child))
+! Views - the new placement in conversation view | Chế độ xem - vị trí mới trong chế độ xem hội thoại
+!twitter.com,x.com##[aria-label="Timeline: Conversation"] [href*="/status/"] ~ span
+
+!!Interaction spam/Thư rác tương tác
+! Twitter/X - [User] Retweeted/Reposted (excludes own retweets) | Twitter/X - [Người dùng] Đã tweet lại/Đăng lại (không bao gồm các tweet lại của riêng bạn)
+!twitter.com,x.com##[aria-label^="Timeline:"] [data-testid="cellInnerDiv"]:has([d^="M4.75 3.79l4.603"]):not(:has([data-testid="unretweet"])):style(border: yellow dotted 5px !important)
+
+!!Others/Khác
+! Twitter/X - "Official" label on posts and profiles | Twitter/X - Nhãn "Chính thức" trên bài đăng và hồ sơ
+!twitter.com,x.com##[src$="/verified_stroke_1.png"]:upward(div:not(:empty)+div:last-of-type):style(border: dotted 2px grey !important;)
+
+! Twitter/X - Like and Retweet counts // Remove ` [data-testid="app-text-transition-container"]` to hide entire buttons
+!twitter.com,x.com##[data-testid="retweet"] [data-testid="app-text-transition-container"], [data-testid="like"] [data-testid="app-text-transition-container"]
+
+! Twitter/X - Discover more / More Tweets - Conversation view suggestions
+!twitter.com,x.com##[aria-label="Timeline: Conversation"] :is([data-testid="cellInnerDiv"]:has(h2:not(:only-child)), [data-testid="cellInnerDiv"]:has(h2:not(:only-child))~div)
+
+! Twitter/X - Hidden posts - hide "Show additional replies" or "This tweet is from an account you've blocked/muted" |  Twitter/X - Bài đăng ẩn - ẩn "Hiển thị thêm phản hồi" hoặc "Tweet này đến từ tài khoản bạn đã chặn/tắt tiếng"
+!twitter.com,x.com##[aria-label="Timeline: Conversation"] [data-testid="cellInnerDiv"] article [role="button"]:not([aria-label]):upward([data-testid="cellInnerDiv"])
+
+!!Sidebar
+! Twitter/X - Get verified | Twitter/X - Xác minh
+!twitter.com,x.com##[aria-label="Get Verified"]
+! Twitter/X - Live spaces | Twitter/X - Không gian trực tiếp
+!twitter.com,x.com##[data-testid="sidebarColumn"] [data-testid="placementTracking"]:last-child:upward(1)
+! Twitter/X - Sidebar - Topics to follow | Twitter/X - Thanh bên - Chủ đề cần theo dõi
+!twitter.com,x.com##[data-testid="sidebarColumn"] [href="/i/topics/picker/home"]:upward(section)
+! Twitter/X - Sidebar - What's happening/Trending now/Trends for you | Twitter/X - Thanh bên - Chuyện gì đang xảy ra/Xu hướng hiện tại/Xu hướng dành cho bạn
+twitter.com,x.com##[aria-label$="trending now" i]
+! Twitter/X - Sidebar - Who to follow/You might like | Twitter/X - Thanh bên - Theo dõi ai/Bạn có thể thích
+twitter.com,x.com##[aria-label="who to follow" i]:upward(1)
+
+!!Login dialog
+!twitter.com,x.com##div#layers div[data-testid="sheetDialog"]:upward(div[role="group"][tabindex="0"])
+!twitter.com,x.com##html:style(overflow: auto !important;)
+
+!!App suggestion overlay/Lớp phủ đề xuất ứng dụng
+twitter.com,x.com###layers>div:last-of-type:has-text(Switch to the app)
+
+!Hide Grok | https://raw.githubusercontent.com/Vran-n/uBlock-List/refs/heads/main/filters/desktop/simplify%20twitter
+x.com##[data-testid="GrokDrawerHeader"]
+x.com##[aria-label="Grok actions"]
+x.com##[aria-label="Enhance your post with Grok"]
+x.com##[aria-label="Profile Summary"]
+! hover card
+x.com##[data-testid="HoverCard"]:not(:has([aria-label="Smileys & people"]), :has([data-testid^="DM_Reaction_UserCell"]), :has([role="dialog"])) > * > * > :last-child
+
+! Reddit
+!Ứng dụng spam trên thiết bị di động | https://www.reddit.com/r/uBlockOrigin/comments/yrtr3r/reddits_new_annoying_mobile_popup_has_to_go/ | https://www.reddit.com/r/uBlockOrigin/comments/16ex8ou/cant_scroll_up_or_down_on_reddit/
+! Reddit app ad
+!www.reddit.com##.XPromoPopupRpl
+!www.reddit.com##xpromo-new-app-selector
+!www.reddit.com##.bottom-bar, .XPromoBottomBar
+!www.reddit.com##.useApp,.TopNav__promoButton
+!www.reddit.com##body:style(pointer-events:auto!important;)
+
+! uBO Annoyances has also this:
+! https://github.com/uBlockOrigin/uAssets/issues/6826
+!reddit.com##.XPromoPopup
+!reddit.com##body.scroll-disabled:style(overflow: visible!important; position: static!important;)
+!reddit.com##.XPromoInFeed
+!amp.reddit.com##.AppSelectorModal__body
+!amp.reddit.com##.upsell_banner
+
+! 2022-11-11 20:20:47 CET:
+!www.reddit.com##xpromo-app-selector
+!www.reddit.com##body.scroll-is-blocked:style(overflow: visible!important; position: static!important;)
+!www.reddit.com##+js(aeld, touchmove)
+
+! 2022-11-12 10:11:02 CET
+!www.reddit.com##.XPromoPopupRplNew
+
+! 2023-09-10 14:07:31 CEST
+!www.reddit.com##body[style*="pointer-events"]:style(pointer-events:auto!important;)
+!www.reddit.com##body[style*="overflow"]:style(overflow:auto!important;)
+
+! RPAN
+! Hide Reddit 'Top Broadcast Now' & 'Top livestream' | https://www.reddit.com/r/uBlockOrigin/comments/jsyp9n/block_new_top_livestream_ads_on_reddit/
+!reddit.com##a[href^="/rpan/"] > h3:has-text(/Top (livestream|broadcast)/):upward(7)
+! Block downloading. Please report back if does not work or causes issues | https://www.reddit.com/r/uBlockOrigin/comments/lqol14/block_top_live_stream_in_reddit/goi43sg/
+!||strapi.reddit.com^$xhr,domain=reddit.com
+
+! Chặn Google dịch tự động, vẫn dịch TIÊU ĐỀ
+||reddit.com^$removeparam=tl
+
+! Làm mờ ảnh NSFW cho Reddit | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-28704336
+!www.reddit.com##div[data-click-id="media"] img[src*="blur=40"]:style(opacity: 0.1!important)
+
+!Tiktok
+!!Cho phép chuột phải
+tiktok.com##+js(aeld, contextmenu, preventDefault)
+!!Ẩn popup login
+!tiktok.com###login-modal,[class*="DivModalContainer"]
+!!Chặn dừng video khi chuyển tab
+tiktok.com##+js(aeld, visibilitychange, )
+!!Chặn service worker
+||tiktok.com/sw.js$script
+!!Ẩn khung quà tặng phía dưới live
+tiktok.com##.justify-center.items-center.flex.w-full
+!!Chặn "Phiên live đề xuất" phía dưới live đang phát/sau khi kết thúc live
+tiktok.com##div.w-full.pb-26 > div.w-full.min-h-full > div.flex.flex-col.mb-18
+tiktok.com##.e1b40fhc0.tiktok-1vxr3sh.mt-24.mb-32.justify-center.items-center.flex-col.flex
+
+!!Ẩn tin nhắn hệ thống (thông báo chào mừng,tin nhắn AI)
+tiktok.com##.flex-shrink-0.h-\[30px\].px-12.w-full.items-center.flex.relative
+tiktok.com##div.pt-4.w-full > .text-UIText1.P4-Regular.px-12.py-4.flex.relative
+!!Ẩn thông báo vào phòng
+tiktok.com##.min-h-32.max-h-\[200px\].flex-shrink-0.overflow-hidden.h-auto.w-full
+
+!Twitch
+twitch.tv##+js(twitch-videoad)
+!!Ẩn banner T10
+www.twitch.tv##.tw-root--theme-light.bQBtBr.kTFwcW.ScLayoutCssVars-sc-1pn65j5-0.Layout-sc-1xcs6mc-0
+www.twitch.tv###twilight-sticky-footer-root
+www.twitch.tv##.fvMgHN.Layout-sc-1xcs6mc-0
+
+!!Ẩn các thành phần phiền toái | https://alexanderadam.github.io/adblock_list
+twitch.tv##.channel-info-content div[class]:has(> div[class] > [style^='background-image: url('])
+twitch.tv##.chat-input__textarea div[class]:has(> div[class] > [data-a-target="bits-button"])
+twitch.tv##.chat-room__content > div:has(.channel-leaderboard-header-rotating__users)
+twitch.tv##.chat-room__content div:has(.bits-leaderboard-expanded-top-three-entry)
+twitch.tv##.prime-offer
+twitch.tv##.prime-offers-upsell
+twitch.tv##.prime-upsell__logo-container
+twitch.tv##.top-nav__menu > div[class] > div[class]:has([data-a-target="top-nav-get-bits-button"])
+twitch.tv##.top-nav__menu > div[class] > div[class]:has([data-target="prime-offers-icon"])
+twitch.tv##.top-nav__menu > div[class] > div[class]:has-text(Go Ad-Free)
+twitch.tv##[data-a-target="top-nav-get-bits-button"]:has(> [data-test-selector="subscribe-button__dropdown"])
+twitch.tv##[data-target="channel-header-right"] div[class]:has(> div[class] > div[class]> div[class] > [data-test-selector="subscribe-button__dropdown"])
+twitch.tv##[data-test-selector="channel_panel_test_selector"]:has-text(" (Werbung)")
+twitch.tv##div[class]:has(> div[class]> button.tw-interactable > div[style]):has-text(Go Ad-Free on Every Stream with Turbo)
+
+!Amazon
+!!Chặn quảng cáo còn sót cho Amazon Prime | https://www.reddit.com/r/uBlockOrigin/comments/1n3zt94/comment/nbio9jw/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+amazon.*,primevideo.com#@#+js(xml-prune, xpath(//*[name()="Period"][.//*[@value="Ad"]] | //*[name()="Period"]/@start), [value="Ad"], .mpd)
+
+amazon.*,primevideo.com##+js(xml-prune, 'xpath(//*[name()="Period"][.//*[name()="BaseURL" and contains(text(),"/interstitial/")]] | /*[name()="MPD"][.//*[name()="BaseURL" and contains(text(),"/interstitial/")]]/@mediaPresentationDuration | /*[name()="MPD"][.//*[name()="BaseURL" and contains(text(),"/interstitial/")]]/*[name()="Period"]/@start)', , .mpd)
+amazon.*,primevideo.com##+js(xml-prune, xpath(//*[name()="Period"][.//*[@value="Draper"]] | /*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"]/@start), [value="Draper"], .mpd)
+amazon.*,primevideo.com##+js(xml-prune, xpath(//*[name()="Period"][.//*[@value="Ad"]] | /*[name()="MPD"]/@mediaPresentationDuration | //*[name()="Period"]/@start), [value="Ad"], .mpd)
+
+!!Amazon Prime Gaming - Fade out non-GOG or Epic Games freebies | https://greasyfork.org/en/scripts/479348-amazon-prime-gaming-fade-out-non-gog-or-epic-games-freebies
+gaming.amazon.com##div.item-card__action > a.tw-interactive[href*='aga/']:upward(4):style(opacity: .3;)
+!!Xóa danh sách Amazon Marketplace | https://github.com/stonecrusher/stylus-UserCSS/tree/master/geizhals
+geizhals.de##.offer__merchant-link:has-text((via Amazon Marketplace)):nth-ancestor(2)
+
+!Discord(Web)
+!!Ẩn popup đòi quyền truy cập micro
+!discord.com##[class^="layerContainer_"]:not(:empty):has([aria-label="Close"]):has-text(Microphone Access):remove()
+
+! NimoTV
+!!Chặn service worker
+||www.nimo.tv^$csp=worker-src 'none'
+
+!www.nimo.tv##.n-as-no-evt
+!www.nimo.tv##.n-as-of-hidden.n-as-magh-md.nimo-room__chatroom__box-gift
+!www.nimo.tv##.n-as-rel.n-as-bd0.RevenuePanel.nimo-iframe
+!www.nimo.tv##.turntable
+!www.nimo.tv##.n-fx-cc.marquee-item
+www.nimo.tv##.nimo-player__marquee-banner
+www.nimo.tv##.CCountrySelect
+
+! Ẩn thanh tặng quà cho Streamer dưới livestream
+www.nimo.tv##.nimo-room__gift-shop
+! Ẩn thanh quà tặng nổi bật (1 phần)
+!www.nimo.tv##.nimo-room__gift-shop__gift-list
+! Ẩn trò chơi cần nạp VIP
+
+! Ẩn nạp tiền/royal
+www.nimo.tv##.nimo-room__gift-shop__recharge-btn.nimo-image
+www.nimo.tv##.nimo-room__gift-shop__royal-entry.nimo-image
+! Ẩn Nimo-room Main
+! Ẩn thông tin trên nimo-header
+www.nimo.tv##.nimo-menu-item[data-id=recharge]
+www.nimo.tv##.nimo-menu-item[data-id=goLive]
+www.nimo.tv##.nimo-menu-item[data-id=app]
+! Ẩn thanh side-bar bên trái
+www.nimo.tv###side-bar
+! Ẩn thanh tiêu đề khi cuộn
+www.nimo.tv##.nimo-header:style(position: unset!important;)
+! Ẩn logo NimoTV trên thanh tiêu đề
+www.nimo.tv##.nimo-header-logo-cont
+! Ẩn thanh navigator bên phải
+www.nimo.tv##.float-navigator-container
+! Ẩn header thanh thể loại
+www.nimo.tv##.game-area-head
+! Ẩn nimo-card-cover và preview
+!www.nimo.tv##.nimo-card-cover
+!www.nimo.tv##.nimo-player
+!www.nimo.tv##.nimo-rc_meta__nick-name
+!www.nimo.tv##.controlZindex
+! Ẩn hình nền và banner
+!www.nimo.tv##.HeadImg.nimo-room__head-img
+||img.nimo.tv/o/banner/*/l0/img.webp$image
+||img.nimo.tv/o/activity/*/l0/img.jpg$image
+! Ẩn info của streamer ở Nimo-room Main
+!www.nimo.tv##.nimo-rm
+! Ẩn nút share
+www.nimo.tv##.nimo-rm_share.nimo-btn
+! Ẩn đề xuất streamer khi kết thúc live
+www.nimo.tv##.off-live
+! Ẩn gợi ý streamer event
+www.nimo.tv##.nimo-room__nav-tag
+
+! Ẩn thông tin ở khung chat
+! Ẩn khung rank của streamer
+www.nimo.tv##.nimo-room__activity
+www.nimo.tv##.nimo-iframe__wrap
+! Ẩn khung rank của user donate
+www.nimo.tv##.nimo-room__rank
+! Ẩn User vào room và quà donate ở phía trên khung chat
+www.nimo.tv##.chat-room__enter_banner
+!www.nimo.tv##.nimo-gift-banner
+!www.nimo.tv##.swiper-container
+!www.nimo.tv##.n-as-abs.nimo-room__pay-chat-top-message-list.swiper-container-pointer-events.swiper-container-horizontal.swiper-container-initialized.swiper-container
+! Ẩn hiển thị trứng và thông tin user trúng thưởng ở khung chat
+!www.nimo.tv##.nimo-room__chatroom__box-gift
+!www.nimo.tv##.nimo-popover
+!www.nimo.tv##[src="https://img.nimo.tv/o/banner/FA594DC3E0032D815464AD133760E769_daojishi.png/w152_l0/img.png"]
+!www.nimo.tv##.nimo-box-gift__box__cd
+!www.nimo.tv##[src="https://img.nimo.tv/o/banner/CA1F83CD61A6CBB290299AB8B9448A9_kelingqu.png/w152_l0/img.png"]
+!www.nimo.tv##.nimo-box-gift__box__btn
+www.nimo.tv##.nimo-box-gift__winner-msg
+www.nimo.tv##.tips
+! Ẩn tin nhắn donate, user vào room/share/follow/
+www.nimo.tv##.UserEnterRoomMessageItem
+www.nimo.tv##.chatroomShareComp-container
+!www.nimo.tv##.n-fx-sc.n-as-mrgh.n-as-mrgv-xs
+www.nimo.tv##.n-as-mrgh.n-as-mrgv-xs
+!www.nimo.tv##.n-as-mrgh.n-as-mrgb.nimo-room__chatroom__message-item
+!www.nimo.tv##.n-as-mrg-xs
+!www.nimo.tv##.n-as-vtm
+www.nimo.tv##.nimo-room__chatroom__message-item__info n-as-inline-block
+!www.nimo.tv##.c3.n-as-break-word.nimo-room__chatroom__message-item__content.content
+! Ẩn donate KC để hiện chat của user hoặc User lên cấp vé fan
+!www.nimo.tv##.n-as-fs12.n-as-rnd-lg.n-as-mrgh-xxs.n-as-mrgv-xs.nimo-room__pay-chat-message-item
+! Ẩn dòng System Message đầu tiên ở khung chat
+www.nimo.tv##div.nimo-room__chatroom__message-item:nth-of-type(1)
+www.nimo.tv##.n-as-pre-wrap.nimo-room__chatroom__system-message-chat-item__info
+! Ẩn trang trí tên user
+www.nimo.tv##.nimo-cr_decoration
+www.nimo.tv##.nimo-room__chatroom__message-item__info-colon
+! Ẩn khung chat Nimo
+!www.nimo.tv##.nimo-scrollbar.n-as-scroll
+!www.nimo.tv##.n-fx-col.n-fx-bn.n-as-pad > .n-fx-bc
+www.nimo.tv##.ChatModeTip-container
+! Ẩn icon VIP
+www.nimo.tv##.nimo-vip-emoticon__title:nth-of-type(1)
+www.nimo.tv##.nimo-vip-emoticon__list.n-fx-wrap.n-fx-bs:nth-of-type(2)
+! Ẩn mô tả Fan Club
+www.nimo.tv##.nimo-fans-group__privilege-show
+
+! Ẩn mục chat = KC
+!www.nimo.tv##.n-as-fs24
+!www.nimo.tv##.nimo-bg-base
+!www.nimo.tv##.nimo-room__main__container
+!www.nimo.tv##.mini-player-wrapper
+!www.nimo.tv##.MessageList
+!www.nimo.tv##.top-message-list
+!www.nimo.tv##.chat-box-container
+! Ẩn recommend streamer/restream/popular clip
+www.nimo.tv##.nimo-room-recommend-list
+! Ẩn lối tắt đến nimoshow/game
+!www.nimo.tv##a.n-as-mrgh-md:nth-of-type(1)
+!www.nimo.tv##a.n-as-mrgh-md:nth-of-type(2)
+www.nimo.tv##a.n-as-mrgh-md:nth-of-type(3)
+www.nimo.tv##.nimo-menu-item.c-hover1.c2.has-arrow
+
+! Ẩn mọi người cũng tìm kiếm
+www.nimo.tv##.SearchBox_Elements_HotList
+! Ẩn icon nạp/go live/download/history/lang/dark mode/my flow
+www.nimo.tv##.nimo-menu-item.nimo-header-topup.n-as-mrgh
+www.nimo.tv##.nimo-menu-item.nimo-header-go-live
+www.nimo.tv##.nimo-menu-item.nimo-header-download
+www.nimo.tv##.nimo-menu-item.nimo-header-history
+!www.nimo.tv##.nimo-menu-item-selected.nimo-menu-item.n-as-mrgh
+! Ẩn icon thông báo live/đăng ký VIP
+www.nimo.tv##.act-subscribe-entry-btn-group.n-as-padh-xxs.n-fx0.nimo-btn-group
+www.nimo.tv##.active.nimo-room__live-notifications-btn
+
+! IQIYI
+! Ẩn thanh tiêu đề khi cuộn
+www.iq.com##.header-container:style(position: unset!important;)
+! Ẩn nút tải app
+www.iq.com##.download-container
+
+!Addic7ed
+www.addic7ed.com##OBJECT
+www.addic7ed.com##A[href="http://twitter.com/addic7ed"]
+www.addic7ed.com##A[href="irc://irc.efnet.net:6667/addic7ed"]
+www.addic7ed.com##A[id="facebooksticker"]
+www.addic7ed.com##INPUT[name="submit"][src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"]
+www.addic7ed.com##BUTTON[class="bitcoinate"]
+www.addic7ed.com##DIV[id="___plusone_0"]
+www.addic7ed.com##IFRAME[src^="//www.facebook.com/"]
+www.addic7ed.com##[class=" fb_iframe_widget"]
+www.addic7ed.com##IFRAME[id^="twitter-widget"]
+www.addic7ed.com##IFRAME[src^="http://www.facebook"]
+www.addic7ed.com##SCRIPT[src^="http://www.facebook"]
+www.addic7ed.com##A[class="twitter-share-button"]
+www.addic7ed.com##FB\:LIKE
+www.addic7ed.com##G\:PLUSONE
+www.addic7ed.com##body > center:nth-of-type(1) > table > tbody > tr:nth-of-type(5) > td > iframe
+www.addic7ed.com##center:nth-of-type(1) > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2)
+www.addic7ed.com##DIV[alt="Donation Status"]
+www.addic7ed.com##a[href^="https://www.patreon.com/bePatron"]
+
+!Javbus
+!!Bỏ qua xác minh độ tuổi
+www.javbus.com##+js(set-cookie, dv, 1)
+www.javbus.com##+js(set-cookie, age, verified)
+www.javbus.com##+js(set-cookie, existmag, mag)
+www.javbus.com##+js(cookie-remover, "**VMInitInjection**")
+
+4chan
+https://github.com/KevinParnell/OneeChan?tab=readme-ov-file#adblockpihole-filters-fix
+@@||4chan.org^*$csp=default-src 'self' * data: 'unsafe-inline' 'unsafe-eval'
+@@|blob:$image,media,domain=4chan.org
+@@||boards.4chan.org^$csp
+@@||4channel.org^*$csp=default-src 'self' * data: 'unsafe-inline' 'unsafe-eval'
+@@|blob:$image,media,domain=4channel.org
+@@||boards.4channel.org^$csp
+
+https://github.com/saxamaphone69/ss21?tab=readme-ov-file#blocker-filters
+! ss21 Blocking Suggestions
+! REQUIRED: Block all external stylesheets (Yostuba, Tomorrow, etc.)
+*//s.4cdn.org/css^$domain=boards.4chan.org
+*//s.4cdn.org/js/prettify/prettify.*.css
+
+! REQUIRED: Block potentially harmful scripts inserted into 4chan
+@@||4chan.org^*$csp=default-src 'self' * data: 'unsafe-inline' 'unsafe-eval'
+
+! This one used to work, or was needed for something, but I don't remember. Here for archives sake:
+! 4chan.org##script:inject(abort-current-inline-script.js, String.fromCharCode)
+
+! Add exceptions to certain stylesheets (flags, tegaki, etc.)
+@@||s.4cdn.org/css/flags.*.css
+@@||s.4cdn.org/css/painter.*.css
+@@||s.4cdn.org/css/tegaki.*.css
+@@||s.4cdn.org/css/yui.css
+@@||s.4cdn.org/css/global.*.css
+@@||s.4cdn.org/css/error.css
+
+! RECOMMENDED: Block board banners (above /g/ - Technology)
+*//s.4cdn.org/image/title/*^$domain=boards.4chan.org,important
+
+! RECOMMENDED: Block contest banners (advertisements to other boards)
+//s.4cdn.org/image/contest_banners/*^$domain=boards.4chan.org,important
+
+! OPTIONAL: Block snow.js, which adds snowflakes at Christmas
+*//s.4cdn.org/js/snow.js$script,important
+
+! OPTIONAL: Block the Google Analytics script
+//www.google-analytics.com/analytics.js^$domain=boards.4chan.org
+
+!Bigo Live
+! Ẩn Banner "Đăng ký KOL"
+www.bigo.tv##.discord-banner-isRoom.discord-banner
+www.bigo.tv##.discord-banner
+! Ẩn thanh công cụ
+www.bigo.tv##.FixTool-Component
+! Ẩn thanh tiêu đề khi cuộn
+www.bigo.tv##.PageHead-Component:style(position: unset!important;)
+
+!BBVA | https://greasyfork.org/en/scripts/453584-bbva-dark-mode
+! swy: remove intro banner about phishing
+www.bbva.es##div[data-component=stickybanner]
+web.bbva.es##.ui-widget-overlay, #ui-dialog-campania-bloqueante
+web.bbva.es##html:style(overflow: scroll !important)
+
+! swy: dark mode
+!bbva.es##html:style(filter: invert(0.88) hue-rotate(180deg))
+!bbva.es###ph_cabecera, div[data-addon=bbva-announcement], div[data-autoload=experiencias], #app_footer_fyc_normal, div#footer, header[role=banner], nav#header, div[class*=megamenu__fixed], .m-marquee__media, nav-menu :style(filter: invert(1) hue-rotate(180deg))
+!bbva.es##img.o-media__img, img.o-heading__img, img[class*=cover]:not([class*=complexmarquee__img]), img[class*=card], video, iframe:not([id=initial-loading-spinner]), div.o-media__item.width-xxsmall  :style(filter: invert(1) hue-rotate(180deg) !important;)
+
+! swy: make the bank logo cover the whole cell
+bbva.es##div.m-products table.o-table th[role=rowheader] img.o-media__img  :style(width: inherit !important;)
+
+! swy: get rid of the "more offers" top bar for buying other banking products
+web.bbva.es###myOpportunities
+
+! swy: remove the annoying let's chat-hovering button
+bbva.es##.m-chat-floating-button
+
+! swy: get rid of the advertising/offer buttons to their shitty investing deals
+web.bbva.es##li.first > span.c-botones-generico[data-link=subhome-ahorro-inversion]
+
+! swy: get rid of the patrimonio financiero spam
+web.bbva.es###view_patrimonionofinanciero-fyc
+web.bbva.es##.checkedAutoloads.bocadillo:has(.m-alert--promo)
+
+!Bilibili
+! Xóa bỏ tường phí | https://github.com/akiirui/userscript/tree/main/bilibili-danmaku-disabler#skip-charge
+!www.bilibili.com##.bilibili-player-electric-panel
+
+!Trovo
+! Ẩn thanh bên
+trovo.live##.big.base-left-side-container
+
+!!Torrent
+||1337x.vpnonly.site
+
+!Vietnam sites
+!RoPhim
+!www.rophim.me##.sspp-area.is-wide
+!www.rophim.me##.is-demo.display-single
+!www.rophim.me##.sspp-area
+!goatembed.com##.sspp-area
+!www.rophim.mx##div.swiper-slide:has(.sspp-area)
+!/v/*/vast.js$script
+!!Chặn service worker
+!||www.rophim.me^$csp=worker-src 'none'
+!Rophim VIP
+!rophim.li##+js(trusted-json-edit-xhr-response, .result.is_vip=true, /user/info)
+!rophim.li##+js(trusted-json-edit-xhr-response, .result.is_verified=true, /user/info)
+!rophim.li##+js(trusted-json-edit-xhr-response, .result.vip_expires_at=253394586000, /user/info)
+!rophim.li##+js(trusted-json-edit-xhr-response, .result.coin_balance=999999999, /user/info)
+!Animevietsub
+!/^.*?animevietsub.*?$/##.Ads
+
+!SpeedTestVN
+! Tải App
+speedtest.vn##.hidden-xs.hidden-sm.col-md-12.col-xl-12.appStore
+
+!Voz.vn
+!!Dark mode cho voz | https://voz.vn/t/tong-hop-cac-userscripts.914560/post-34509899
+!voz.vn##html:style(filter: invert(95%) !important; text-shadow: 0 0 0 !important;)
+!voz.vn##img:style(filter: invert(1) !important;)
+!voz.vn##iframe:style(filter: invert(1) !important;)
+!voz.vn##video:style(filter: invert(1) !important;)
+
+!!Voz theme light | màu xám tốt cho mắt
+!voz.vn##a:style(color:#083876!important)
+!voz.vn##a:hover:style(color:#3770bd!important)
+!voz.vn##*:style(border:none !important)
+!voz.vn##.p-body:style(background: #A5A5A5!important)
+!voz.vn##.p-navEl-link.p-navEl-link--splitMenu:style(background: #BBB!important)
+!voz.vn##.p-sectionLinks:style(background: #BBB!important; border-bottom: 1px solid #A1A1A1 !important)
+!voz.vn##.p-nav:style(border-bottom: 1px solid #B9B9B9 !important)
+!voz.vn##.p-navEl is-selected:style(background: #A5A5A5!important)
+!voz.vn##.alert.js-alert.menu-row.menu-row--separated.menu-row--clickable.is-read:style(background: #D5D5D5!important)
+!voz.vn##.alert.js-alert.menu-row.menu-row--separated.menu-row--clickable.is-recently-read:style(background: #E4E6E7!important)
+!voz.vn##.block-tabHeader:style(background: #EDEDED!important)
+!voz.vn##.p-header, .p-nav, .p-footer, .notice-content:style(background: #C0C0C0!important)
+!voz.vn##.p-footer:style(border-top: 1px solid #A1A1A1 !important)
+!voz.vn##.p-nav-scroller.hScroller .p-navEl.is-selected .p-navEl-link.p-navEl-link--splitMenu:style(background: #CECECE!important)
+!voz.vn##.p-nav-scroller.hScroller .p-navEl.is-selected .p-navEl-splitTrigger:style(background: #CECECE!important)
+!voz.vn##.p-nav-scroller.hScroller .p-navEl:style(background: #CECECE!important)
+!voz.vn##.p-nav-scroller.hScroller .p-nav-list .p-navEl-link.p-navEl-link--splitMenu:style(background: #CECECE!important)
+!voz.vn##.p-nav-scroller.hScroller .p-navEl-splitTrigger:style(background: #CECECE!important)
+!voz.vn##.p-navSticky--primary.is-sticky .p-nav-list .p-navEl.is-selected .p-navEl-splitTrigger::before:style(border-left: none!important)
+!voz.vn##.p-navgroup:style(background: #CECECE!important)
+!voz.vn##.p-navgroup-link:hover:style(background: #D5D5D5!important)
+!voz.vn##.p-title-value:style(color: #c90076!important; font-weight: 700 !important)
+!voz.vn##.message-userArrow::after:style(display:none!important)
+!voz.vn##.block-container.lbContainer .message-userArrow::after:style(top: 3px!important; right:0px!important; border: 9px solid #A5A5A5!important; border-left-width: 0!important; border-right-color: #D5D5D5!important)
+!voz.vn##.block-container .message.message--quickReply.block-topRadiusContent.block-bottomRadiusContent .message-userArrow::after:style(top: 3px!important; right:0px!important; border: 9px solid #A5A5A5!important; border-left-width: 0!important; border-right-color: #D5D5D5!important)
+!voz.vn##.message-cell.message-cell--user:style(background: #A5A5A5!important)
+!voz.vn##.message-cell.message-cell--main:style(background: #D5D5D5!important)
+!voz.vn##.bbCodeBlock, .reactionsBar, .reactionsBar li:style(background: #CECECE!important)
+!voz.vn##.bbCodeBlock-expandLink:style(height: 100px!important; background: linear-gradient(to bottom, #dfe0e200 0%, #CCC 80%)!important)
+!voz.vn##.bbCodeBlock:style(border: 1px solid #CCC!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink:style(background: #eaebec!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink a:style(color:#3770bd!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink a:hover:style(color:#2c5997!important)
+!voz.vn##.bbCodeInline:style(background: #eaebec!important; border: 1px solid #D5D5D5 !important)
+!voz.vn##.embed.fauxBlockLink:style(background: #e4e6e7!important; border: 1px solid #C5C5C5 !important; padding: 6px!important)
+!voz.vn##.embed.fauxBlockLink:style(background: #CCC!important; border: 1px solid #C5C5C5 !important; padding: 6px!important)
+!voz.vn##.bbCodeBlock-title :style(display: flex; align-items: center; justify-content: flex-start)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch:style(background: #CCC!important; border-left: 3px solid #3c79c8!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock-title, .bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock-title a:style(background: #DDD!important; color:#3c79c8!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink:style(background: #eaebec!important; border: 1px solid #CCC!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock.bbCodeBlock--screenLimited.bbCodeBlock--code:style(background: #DDD!important; border-left: 3px solid #ff944c!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock.bbCodeBlock--screenLimited.bbCodeBlock--code .bbCodeBlock-title:style(background: #E2E2E2!important; color:#ff944c!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeBlock.bbCodeBlock--spoiler:style(background: #DDD!important; border: 1px solid #CCC!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .bbCodeInline:style(background: #DDD!important; border: 1px solid #D5D5D5 !important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch .embed.fauxBlockLink:style(background: #DDD!important; border: 1px solid #C5C5C5 !important; padding: 6px!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--screenLimited.bbCodeBlock--code:style(background: #CCC!important; border-left: 3px solid #ff944c!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--screenLimited.bbCodeBlock--code .bbCodeBlock-title:style(background: #DDD!important; color:#ff944c!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--spoiler .bbCodeBlock.bbCodeBlock--expandable.bbCodeBlock--quote.js-expandWatch:style(background: #DDD!important; border: 1px solid #CCC!important;  border-left: 3px solid #3c79c8!important)
+!voz.vn##.bbCodeBlock.bbCodeBlock--spoiler .bbCodeBlock.bbCodeBlock--spoiler:style(background: #DDD!important; border: 1px solid #CCC!important)
+!voz.vn##.bbTable:style(background: #e4e6e7!important)
+!voz.vn##.bbTable > table > tbody > tr > td:has(.bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink):style(background: transparent !important)
+!voz.vn##.bbTable .bbCodeBlock.bbCodeBlock--unfurl.js-unfurl.fauxBlockLink:style(background: #eaebec!important; border: 1px solid #DDD!important)
+!voz.vn##.pageNav-page, .pageNav-jump.pageNav-jump--prev, .pageNav-jump.pageNav-jump--next:style(background: #B0B0B0!important)
+!voz.vn##.pageNav-page, .pageNav-jump:style(background: #B0B0B0!important)
+!voz.vn##.pageNav-page.pageNav-page--current:style(background: #CCC!important)
+!voz.vn##.pageNav-jump.pageNav-jump--prev, .pageNav-jump.pageNav-jump--next:style(background: #B5B5B5!important)
+!voz.vn##.pageNav-main, .pageNav-jump:style(border: 1px solid #A1A1A1 !important)
+!voz.vn##.menu-tabHeader.tabs:style(background: #EDEDED!important)
+!voz.vn##.block-container:style(background: #C0C0C0!important)
+!voz.vn##.block-container.lbContainer, .block-body.js-replyNewMessageContainer:style(background: #A5A5A5!important)
+!voz.vn##.avatar img:style(background-color: transparent !important)
+!voz.vn##.tooltip--reaction .tooltip-content:style(background: transparent !important)
+!voz.vn##.reactionSummary > li:style(background: transparent !important)
+!voz.vn##.block-filterBar:style(background: #CCC!important)
+!voz.vn##.memberTooltip-header, .memberTooltip-blurbContainer:style(background: #D5D5D5!important)
+!voz.vn##.memberTooltip-info, .memberTooltip-actions:style(background: #EEEEEE!important)
+!voz.vn##.memberTooltip--withBanner .memberTooltip-blurbContainer .memberTooltip-blurb .pairs dt:style(color:#8c9197!important)
+!voz.vn##.block-header:style(background: #CCC!important; color:#083876!important)
+!voz.vn##.block-footer:style(background: #BBB!important)
+!voz.vn##.listPlain:style(background: #dfe0e2!important)
+!voz.vn##.block-row:style(background: #dfe0e2!important)
+!voz.vn##.memberTooltip-blurb:style(color: #151a1e !important)
+!voz.vn##.button.button--icon.button--icon--bolt, .button.button--icon.button--icon--write.button--cta:style(color: #FFFFFF!important)
+!voz.vn##.structItem:hover, .node-body:hover:style(background: #D5D5D5!important)
+!voz.vn##.node-icon i:style(font-size:28px!important;color:#083876!important;opacity:.6!important)
+!voz.vn##.fr-toolbar .fr-command.fr-btn, .fr-popup .fr-command.fr-btn, .fr-modal .fr-command.fr-btn:style(color:#083876!important)
+!voz.vn##.p-breadcrumbs > li > a:hover:style(background-color: transparent !important)
+!voz.vn##.p-footer:style(color: #1d1f20 !important)
+!voz.vn##.p-pageWrapper:style(margin-bottom:0px!important)
+!voz.vn##.tooltip--basic .tooltip-content:style(background: #dfe0e2!important; outline: 1px solid #CCC!important ;color: #1d1f20 !important)
+!voz.vn##.tooltip-content:style(outline: 1px solid #CCC!important)
+!voz.vn##.memberTooltip, .menu-content.js-visitorMenuBody:style(outline: 1px solid #bbb!important)
+!voz.vn##.memberTooltip .username, .menu-content.js-visitorMenuBody .username:style(font-weight: 520!important)
+!voz.vn##.menu-content:style(outline: 1px solid #bbb!important)
+!voz.vn##.menu.menu--structural.menu--medium.menu--potentialFixed.menu--right.is-active.is-complete:style(outline: 1px solid #bbb!important)
+!voz.vn##.menu.menu--structural.menu--medium.menu--potentialFixed.menu--right.is-active.is-complete .username:style(font-weight: 520!important)
+!voz.vn##.menu-header, .menu-footer.menu-footer--split:style(background:#EDEDED!important)
+!voz.vn##.menu-header:style(color:#122640d9!important)
+!voz.vn##.memberHeader-mainContent:style(background: #D5D5D5!important)
+!voz.vn##.memberHeader-mainContent .username:style(font-weight: 520!important)
+!voz.vn##.menu-content, .tooltip-content:style(outline: 1px solid #bbb!important)
+!voz.vn##.message-cell.message-cell--main:style(border: 1px solid #9d9d9d !important)
+!voz.vn##.block-container:style(border: 1px solid #9d9d9d !important)
+!voz.vn##.block-container.lbContainer:style(border: 1px solid transparent !important)
+!voz.vn##.message.message--quickReply.block-topRadiusContent.block-bottomRadiusContent:style(outline: 1px solid #A5A5A5 !important)
+!voz.vn##.buttonGroup .button:has-text(/Follow|Unfollow|Ignore|Unignore|Send direct message/):style(background: #DDD!important)
+!voz.vn##.button:has-text(/Show older items|Reload|See more|View more…|All/):style(color: #FFFFFF!important)
+!voz.vn##.username:style(color: #144c96!important)
+!voz.vn##.username:style(color: #c90076!important)
+!voz.vn##.username:hover:style(color: #b4006a!important)
+!voz.vn##.message.message--post.js-post.js-inlineModContainer:style(margin:10px 0!important)
+!voz.vn##.message.message--post.js-post.js-inlineModContainer .message-cell.message-cell--main:style(border: 1px solid #9f9f9f !important)
+!voz.vn##.message.message--conversationMessage.js-message:style(margin:10px 0!important)
+!voz.vn##.message.message--conversationMessage.js-message .message-cell.message-cell--main:style(border: 1px solid #9f9f9f !important)
+!voz.vn##.message.message--quickReply.block-topRadiusContent.block-bottomRadiusContent .message-cell.message-cell--main:style(border: 1px solid #9f9f9f !important)
+!voz.vn##.message.message--quickReply.block-topRadiusContent.block-bottomRadiusContent.message--simple .message-cell.message-cell--main:style(border: 1px solid #D5D5D5 !important)
+!voz.vn##.message-responses.js-messageResponses .message-responseRow:style(padding: 10px!important)
+!voz.vn##.fr-dropdown-content:style(border: 1px solid #bbb !important)
+!voz.vn##.fr-popup.fr-desktop.fr-ltr.fr-active:style(outline: 1px solid #bbb !important)
+!voz.vn##.message-attribution.message-attribution--split:style(border-bottom: 1px solid #CCC !important)
+!voz.vn##.message.message--quickReply.block-topRadiusContent.block-bottomRadiusContent.message--simple .message-userArrow:style(right:0px!important)
+!voz.vn##.block-container .message.message--simple.js-inlineModContainer .message-userArrow::after:style(top: 0px!important; right:1px!important; border: 9px solid #A5A5A5!important; border-left-width: 0!important; border-right-color: #D5D5D5!important)
+!voz.vn##.memberHeader-blurbContainer:style(background: #D5D5D5 !important; color: #1d1f20!important)
+!voz.vn##.memberHeader--withBanner .memberHeader-blurbContainer .memberHeader-blurb .pairs dt:style(color: #8c9197!important)
+!voz.vn##.button.button--scroll, a.button.button--scroll:style(background: #eaebec!important)
+!voz.vn##.button:not(.button--splitTrigger):focus, a.button:not(.button--splitTrigger):focus:style(background-color: #eff4fb!important)
+
+! Ẩn sidebar (thanh bên) tăng chiều rộng trang | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-25834275
+voz.vn##.p-body-sidebar,.p-body-sidebarCol:style(display:none!important)
+voz.vn##.p-body-pageContent:style(max-width: 100% !important;width: 100% !important;)
+! Ẩn navbar khi cuộn
+voz.vn##.is-sticky:style(position: unset!important;)
+
+! Xổ hết nội dung được ẩn để tiện ctrl + F tìm kiếm | *Notice: thay link vào sau voz.vn##html[xxx.com] | https://voz.vn/p/33481323/
+voz.vn##html[data-content-key="thread-682181"] .bbCodeSpoiler-content:style(display:unset!important;opacity:unset!important;transition:unset!important;overflow-y:unset!important;height:unset!important)
+voz.vn##html[data-content-key="thread-844751"] .bbCodeSpoiler-content:style(display:unset!important;opacity:unset!important;transition:unset!important;overflow-y:unset!important;height:unset!important)
+voz.vn##html[data-content-key="thread-834484"] .bbCodeSpoiler-content:style(display:unset!important;opacity:unset!important;transition:unset!important;overflow-y:unset!important;height:unset!important)
+
+! Chặn service cho voz
+||voz.vn/service_worker.js
+||voz.vn$csp=worker-src 'none'
+
+! Xóa thanh sidebar trang chủ | https://voz.vn/goto/post?id=27879524
+!voz.vn##^.p-body-sidebar
+!voz.vn##.p-body-sidebarCol:style(display:none!important)
+! Chỉ xóa profile post thay vì xóa sidebar | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-29475278
+!!#if env_firefox
+!||voz.vn/^$replace=/<div[^>]*?(?:js-replyNewMessageContainer)[^>]*?>[\s\S]*?<\/div>(?:\n<\/div>){4}//
+!!#endif
+
+! Mở rộng mục sticker phía dưới hộp chat | https://voz.vn/t/extension-cho-next-voz-vn.2926/post-37991218
+voz.vn##.vozlove_smilebox:style(max-height:unset!important; height:unset!important)
+
+! Chặn đối tượng cần loại bỏ | https://voz.vn/p/33023587/
+voz.vn##.js-inlineModContainer:has(.message-name,.bbCodeBlock-title,.message-attribution:has-text(1lllll))
+!voz.vn##.js-inlineModContainer:has(.message-name,.bbCodeBlock-title,.message-attribution:has-text(shenzero999))
+!voz.vn##.js-inlineModContainer:has(.message-name,.bbCodeBlock-title,.message-attribution:has-text(toi la gay :sosad))
+
+!Chặn fpt và những người bạn :))
+voz.vn##.structItem.structItem--thread:has(.structItem-parts):has-text(/vozNews|Kisuf|vozOfficial/i)
+voz.vn##.node-extra:has-text(/vozNews|Kisuf|vozOfficial/i):style(visibility: hidden !important)
+
+!Xem chữ ký của người khác trên mobile
+voz.vn##.message-signature:style(display: block !important; max-height: none !important; opacity: 1 !important; visibility: visible !important;)
+
+!Rule của Fioren | https://github.com/FiorenMas/Personal-Ublock-Origin-Rules/blob/main/fioren_list.txt
+!QC ở thread
+voz.vn##^div.message--post.message:has-text(powerAPITag.display)
+voz.vn##^div.message--post.message:has-text(static.dable.io/dist)
+voz.vn##+js(aopr, powerAPITag.display, noopFunc)
+!Thread QC tạo bởi user:
+voz.vn##.structItem.structItem--thread:has(.structItem-parts):has-text(/vozNews|Kisuf|vozOfficial/i)
+voz.vn##.node-extra:has-text(/vozNews|Kisuf|vozOfficial/i):style(visibility: hidden !important)
+!Xóa rule abpvn bị lỗi với account mod
+voz.vn#@#div.message--post
+voz.vn#@#.v-element>.v-responsive
+!Ngắt kết nối vào dữ liệu ảnh không cần thiết
+||data.voz.vn^$image
+@@||data.voz.vn/avatars^$image
+@@||data.voz.vn/styles^$image
+@@||data.voz.vn/attachments^$image
+@@||data.voz.vn/profile_banners^$image
+!Ngắt kết nối với domain qc, tracking
+||isvn.space$domain=voz.vn
+||adbro.me$domain=voz.vn
+||pubpowerplatform.io$domain=voz.vn
+||aj1559.online$domain=voz.vn
+||google-analytics.com$domain=voz.vn
+||cloudflareinsights.com$domain=voz.vn
+||googletagmanager.com$domain=voz.vn
+||voz.vn/jc/*
+||voz.vn/js/siropu/*
+voz.vn##^.adsbypubpower
+!Xóa redirect link
+||accesstrade.vn$domain=voz.vn
+voz.vn##a[data-proxy-href]:remove-attr(data-proxy-href)
+
+!Xamvn
+!Xóa Quảng cáo bán account
+/^.*?xamvn.*?$/##.js-inlineModContainer.structItem--thread.structItem:has-text(/Bán 𝗔𝗰𝗰|Kho 𝗔𝗰𝗰/)
+/^.*?xamvn.*?$/##.js-inlineModContainer.js-post.message--post.message:has(.bbWrapper:has-text(/Bán Acc|Acc có chức năng Search/))
+/^.*?xamvn.*?$/##.node-extra:has-text(/Bán 𝗔𝗰𝗰|Kho 𝗔𝗰𝗰/):style(visibility: hidden !important)
+
+!Shopee.vn
+!Chống nhảy link shopee login | https://voz.vn/t/tong-hop-nhung-addon-chat-cho-firefox-chromium.682181/post-36923099
+||shopee.vn^$removeparam=uls_trackid
+||shopee.vn^$removeparam=utm_campaign
+||shopee.vn^$removeparam=utm_content
+||shopee.vn^$removeparam=utm_medium
+||shopee.vn^$removeparam=utm_source
+||shopee.vn^$removeparam=utm_term
+||shopee.vn^$removeparam=d_id
+
+!shopee.vn##.simple-banner,.shopee-floating-icons__wrapper,.section-banner-hotword--no-skin,.home-popup__close-area,.home-popup,.recommendation-by-carousel,.product-shop-hot-sales,.page-product__hot-sales,.product-shop-vouchers,.page-product__shop-voucher
+!chặn cả cục mô tả sản phẩm
+!shopee.vn##div[class*="page-product__content"]:has(> div.page-product__content--right)
+!shopee.vn##footer
+!shopee.vn##div:has(> button[aria-label*="Share on"])
+
+!shopee.vn##div:has(> ul[aria-label*="Mua thêm deal sốc"])
+!shopee.vn##section:has(div:has(> ul[aria-label*="Mua thêm deal sốc"]))
+
+!shopee.vn##section:has(> h3:has-text(Chính sách Trả hàng))
+!shopee.vn##section:has(> h3:has-text(An tâm mua sắm))
+!shopee.vn##section:has(> h3:has-text(Bảo hiểm))
+!shopee.vn##section:has(> h3:has-text(Vận chuyển))
+!shopee.vn##section:has(> h3:has-text(Mã giảm giá của Shop))
+!shopee.vn##section:has(> h3:has-text(Deal Sốc))
+!shopee.vn##section:has(> div > h3:has-text(để nhận))
+shopee.vn##div:has(> div:has(> div:has-text(Có thể bạn cũng thích)))
+!shopee.vn##div:has-text(Có thể bạn cũng thích):upward(2) đang chưa chặn được cục có thể bạn cũng thích 20241003 13:04
+!shopee.vn##^#miniVoucherPopoverLabel
+!shopee.vn##.row.QLiXDZ
+!shopee.vn##.gIL8h3
+
+!Lazada.vn
+www.lazada.vn###topActionHeader:style(position: unset!important;)
+
+!VNExpress
+! Ẩn mục "xem nhiều" bên phải
+vnexpress.net##.col-sticky.sidebar-2
+! Ẩn tải app (Mobile)
+vnexpress.net##.vne_app.app_info.width_common
+
+!Znews
+! Ẩn "Bạn có thể quan tâm"
+znews.vn##.recommendation.section
+
+!TuoiTre
+! Ẩn banner đăng ký nội dung trả phí ở trang chủ
+tuoitre.vn##.section__r-tto-star-register
+tuoitre.vn##.btnstarregister:nth-of-type(2)
+
+!VietNamNet
+! ẨN thanh tiêu đề Priemium khi cuộn (Desktop + Mobile)
+vietnamnet.vn##.header-premium:style(position: unset!important;)
+
+!TruyenQQ
+truyenqqno.com##.div_middle > .right > ul
+
+!vivicomi.info##:xpath(//div[contains(@class,'modal') and contains(.,'18+')]):style(display: none !important)
+!vivicomi17.info##:xpath(//div[contains(@class,'modal-backdrop')]):style(display: none !important)
+!vivicomi17.info##body:has(.modal-backdrop):style(overflow: auto !important)
+
+! Xóa popup xác nhận 18+ trên vivicomi17.info
+vivicomi19.info##.modal-backdrop
+vivicomi19.info###adult-modal
+
+! Khôi phục cuộn trang sau khi ẩn popup
+vivicomi19.info##body:style(overflow: auto !important;)
+vivicomi19.info##html:style(overflow: auto !important;)
+
+www.asianbookie.net###adcheck
+forums.asianbookie.net###adcheck
+||asianbookie.net/*/*.gif
+
+||menrealitycalc.com^$third-party
+
+# Tiếng Ba Tư/Persian/فارسی
+! Nút tải ứng dụng từ Cafe Bazaar (không cần cài đặt)
+cafebazaar.ir##+js(rpnt, script, /window.__NUXT__=/, const main=function(button){const url=button.href;const pkg=new URL(url).searchParams.get('id');fetch("https://api.cafebazaar.ir/rest-v1/process/AppDownloadInfoRequest"\,{mode:"cors"\,method:"post"\,headers:{Accept:"application/json"\,"Content-type":"application/json"\,}\,body:JSON.stringify({properties:{language:2\,clientVersionCode:1100301\,androidClientInfo:{sdkVersion:22\,cpu:"x86\,armeabi-v7a\,armeabi"\,}\,clientVersion:"11.3.1"\,isKidsEnabled:false\,}\,singleRequest:{appDownloadInfoRequest:{downloadStatus:1\,packageName:pkg\,referrers:[]\,}\,}\,})\,}).then(response=>{if(response.ok&&response.status===200){return response.json()}}).then(data=>{if(!data.singleReply||!data.singleReply.appDownloadInfoReply){return};const token=data.singleReply.appDownloadInfoReply.token;const cdnPrefix=data.singleReply.appDownloadInfoReply.cdnPrefix[0];const packageSize=(data.singleReply.appDownloadInfoReply.packageSize/1024)/1024;const versionCode=data.singleReply.appDownloadInfoReply.versionCode||0;const downloadLink=`${cdnPrefix}apks/${token}.apk`;const newButton=document.createElement('a');newButton.className='AppInstallBtn newbtn';newButton.href=downloadLink;newButton.title=`نسخه:${versionCode}`;newButton.setAttribute('data-color'\,'primary');newButton.setAttribute('data-size'\,'lg');newButton.innerHTML=`⬇️دانلود(${packageSize.toFixed(2)}مگابایت)`;button.parentNode.insertBefore(newButton\,button.parentNode.childNodes[0]);button.parentNode.removeChild(button)}).catch(error=>{})};document.addEventListener('DOMContentLoaded'\,()=>{const isMobile=/Mobile|Android/i.test(navigator.userAgent);let buttonSelector='';if(isMobile){buttonSelector='div.DetailsPageHeader__mobile a.AppInstallBtn'}else{buttonSelector='div.DetailsPageHeader__desktop a.AppInstallBtn'};const button=document.querySelector(buttonSelector);if(button){main(button)};const targetNode=document.querySelector('body');const observer=new MutationObserver(function(mutationsList){const buttons=document.querySelector(buttonSelector);if(button&&button.href.includes('://details?id')){main(button)}});observer.observe(targetNode\,{childList:true\,subtree:true})});window.__NUXT__=)
+
+# Germany
+! Chặn ads và các nội dung phiền nhiễu cho zedit.de | https://github.com/stonecrusher/stylus-UserCSS/tree/master/zeit#erweiterte-blockierregeln-f%C3%BCr-ublock-origin
+!2018-05-02
+
+!Einträge aus Hauptmenü entfernen
+!zeit.de##.nav__ressorts-list > li:has(>a[href*="/spiele"])
+!zeit.de##.nav__ressorts-list > li:has(>a[href*="/hamburg"])
+!zeit.de##.nav__ressorts-list > li:has(>a[href*="/d17"])
+
+!Soziale Netzwerke: Teilen, Folgen, Jobangebote
+zeit.de##.sharing-menu,.follow-us,.jobbox-ticker
+
+!Mehr Werbung blockieren
+zeit.de##.cp-region:has(>[data-ct-context="parquet-verlagsangebot"])
+||quiz.zeit.de/
+||audev.zeit.de/
+zeit.de##.cp-area--minor:has(>.frame>iframe[src*="quiz.zeit.de/"])
+zeit.de##.x-spacing:has(>.zg-wiegehtesihnen)
+zeit.de###main > .cp-region--solo:has(>div>#servicebox)
+zeit.de##article[data-unique-id*="xml.zeit.de/vorabmeldungen/"]
+zeit.de##form:has(>.newsletter-teaser-text)
+zeit.de##.article-heading:style(padding:0 !important)
+zeit.de##.article-heading__kicker:style(margin-bottom:0 !important)
+||static.zeit.de/static/js/config_adreload.json
+ze.tt##.ph-notification
+
+# Polish/Ba Lan
+! --- Filmweb.pl --- | https://github.com/pabli24/ubo-filters/
+! Auto Refresh Module
+||fwcdn.pl/front/assets/VKQ8v5qd.js$important,script,domain=filmweb.pl
+||fwcdn.pl/front/assets/twiToIUe.js$important,script,domain=filmweb.pl
+||fwcdn.pl/front/assets/DI2tTF82.js$important,script,domain=filmweb.pl
+||fwcdn.pl/front/assets/LPXlaRNz.js$important,script,domain=filmweb.pl
+! Welcome Screen
+filmweb.pl##^script:has-text(scripts.WelcomeScreen)
+||fwcdn.pl/front/assets/DkV1Y--o.js$important,script,domain=filmweb.pl
+||fwcdn.pl/front/assets/D1gQ-va2.js$important,script,domain=filmweb.pl
+
